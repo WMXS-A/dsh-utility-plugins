@@ -42,6 +42,7 @@ window.__ModuleLoader__.load({
 			state.checkedFor = sessionId;
 			var conn = ctx.get("connection");
 			if (!conn || !conn.api || !conn.api.skills) {
+				state.checkedFor = null;
 				state.note = "connection.skills api 不可用";
 				emit();
 				return;
@@ -57,6 +58,7 @@ window.__ModuleLoader__.load({
 				if (state.issues.length > 0) state.open = true;
 				emit();
 			}).catch(function () {
+				state.checkedFor = null;
 				state.note = "体检加载失败";
 				emit();
 			});
