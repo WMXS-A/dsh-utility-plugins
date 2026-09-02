@@ -1,0 +1,45 @@
+{
+  "name": "dsh-skill-cheatsheet",
+  "description": "Skill cheatsheet in the composer: one-click panel listing every available skill with Chinese title, purpose and usage examples, plus a 'new skill pending catalog' notice. / 技能速查：输入框 🧩 按钮一键打开技能面板，列出当前会话全部技能的中文用途与例句，并提示未收录的新技能。",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime"
+      ],
+      "platform": "web"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": ">=4.0.1 <5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WMXS-A/dsh-utility-plugins.git"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "skill",
+    "cheatsheet",
+    "ui"
+  ],
+  "license": "MIT"
+}

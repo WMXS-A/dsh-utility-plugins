@@ -1,0 +1,45 @@
+{
+  "name": "dsh-bootcheck",
+  "description": "Environment check on session start: quietly verifies that every installed skill is catalogued, and only shows a report card when something is missing. / 环境体检：会话启动静默检查技能词典是否有遗漏，仅在发现问题时弹出简报。",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime"
+      ],
+      "platform": "web"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": ">=4.0.1 <5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WMXS-A/dsh-utility-plugins.git"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "healthcheck",
+    "bootcheck",
+    "skill"
+  ],
+  "license": "MIT"
+}

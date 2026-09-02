@@ -1,0 +1,5 @@
+- insert:
+    - id: skill-cheatsheet
+      name: "dsh-skill-cheatsheet"
+    - id: bootcheck
+      name: "dsh-bootcheck"
