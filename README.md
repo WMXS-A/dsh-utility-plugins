@@ -1,31 +1,28 @@
 # dsh-utility-plugins
 
-Two small, dependency-light client plugins for DeepSeek Harness (dsh):
+A small, dependency-light client plugin for DeepSeek Harness (dsh).
 
 | Package | What it does | Category |
 |---|---|---|
-| [dsh-skill-cheatsheet](packages/dsh-skill-cheatsheet) | Composer 🧩 button opening a skill catalog panel with Chinese titles, purposes, usage examples, and a "new skill pending catalog" notice. | ui |
-| [dsh-bootcheck](packages/dsh-bootcheck) | Quiet per-session environment check that flags skills missing from the cheatsheet dictionary, showing a report only when something is found. | usage |
+| [dsh-skill-cheatsheet](packages/dsh-skill-cheatsheet) | Composer wrench button opening a skill catalog panel with Chinese titles, purposes, usage examples, plus one-click cataloguing of newly installed skills (saved locally). | ui |
 
-Both are pure client plugins: they read the skill catalog through the official client API (`connection.api.skills.list({ sessionId })`), register UI into product slots, and carry no host-side behaviour.
+It is a pure client plugin: it reads the skill catalog through the official client API (`connection.api.skills.list({ sessionId })`), registers UI into product slots, and carries no host-side behaviour. Uncatalogued skills are listed at the top with a "＋ 收录" action that stores a local Chinese entry (title/purpose/source) in browser storage — no rebuild or republish needed.
 
 ## Repository layout
 
 ```
 dsh-utility-plugins/
-├── packages/
-│   ├── dsh-skill-cheatsheet/   # installable dsh plugin (dsh.bundle + client)
-│   └── dsh-bootcheck/          # installable dsh plugin (dsh.bundle + client)
+└── packages/
+    └── dsh-skill-cheatsheet/   # installable dsh plugin (dsh.bundle + client)
 ```
 
 ## Install / 安装
 
 ```sh
 dsh plugin --profile web add dsh-skill-cheatsheet
-dsh plugin --profile web add dsh-bootcheck
 ```
 
-Requires a dsh web profile. Install each package's subdirectory entry from the awesome-dsh-plugin list to get them from the storefronts. / 需要 dsh web profile；两个插件分别作为独立条目收录于 awesome-dsh-plugin 精选列表。
+Requires a dsh web profile. Install the subdirectory entry from the awesome-dsh-plugin list to get it from the storefronts. / 需要 dsh web profile；插件经 awesome-dsh-plugin 精选列表收录后可一键安装。
 
 ## License
 

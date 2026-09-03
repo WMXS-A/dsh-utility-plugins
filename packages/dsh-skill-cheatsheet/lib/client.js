@@ -23,7 +23,25 @@ window.__ModuleLoader__.load({
 			"vision-skills": { title: "vision-skills · 视觉处理", purpose: "截图还原 UI、图片问答、长截图 OCR、元素定位、裁剪、取色、SVG 描摹。", source: "视觉插件提供", examples: ["把这张截图还原成网页", "这个图片里写了什么文字"] }
 		};
 
-		var css = ".skc-trigger{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;padding:0;border:none;border-radius:6px;background:transparent;font-size:15px;line-height:1;cursor:pointer;color:var(--dsw-alias-label-secondary,#4b5563)}.skc-trigger:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(128,128,128,.16));color:var(--dsw-alias-label-primary,#111827)}.skc-layer{position:fixed;inset:0;z-index:0;background:transparent}.skc-panel{position:fixed;left:50%;bottom:148px;transform:translateX(-50%);z-index:1;width:min(640px,92vw);max-height:56vh;overflow:hidden;border-radius:14px;display:flex;flex-direction:column;background:var(--dsw-alias-bg-overlay,#20242c);background:color-mix(in srgb,var(--dsw-alias-bg-overlay,#20242c) 92%,transparent);backdrop-filter:blur(22px) saturate(1.25);border:1px solid var(--dsw-alias-border-l1,rgba(255,255,255,.14));box-shadow:var(--dsw-shadow-lv3,0 18px 60px rgba(0,0,0,.35));color:var(--dsw-alias-label-primary,#eceef1)}.skc-head{flex:none;display:flex;align-items:center;gap:8px;padding:12px 16px;font-weight:600;font-size:14px;border-bottom:1px solid var(--dsw-alias-border-l1,rgba(255,255,255,.12))}.skc-head-icon{display:inline-flex;color:var(--dsw-alias-label-secondary,#4b5563)}.skc-close{margin-left:auto;border:none;background:transparent;color:inherit;opacity:.7;font-size:15px;cursor:pointer;padding:2px 8px;border-radius:6px}.skc-close:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(128,128,128,.18))}.skc-body{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:6px 0}.skc-group{padding:10px 16px 4px;font-size:12px;color:var(--dsw-alias-label-secondary,inherit);opacity:.8}.skc-item{display:flex;gap:10px;padding:9px 12px;align-items:flex-start;border-radius:8px}.skc-item:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(128,128,128,.14))}.skc-icon{flex:none;width:26px;height:26px;border-radius:8px;background:color-mix(in srgb,var(--dsw-alias-brand-primary,#7a86ff) 20%,transparent);color:var(--dsw-alias-brand-text,#aab4ff);display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}.skc-main{flex:1;min-width:0}.skc-name{font-weight:600;font-size:13.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.skc-tag{font-size:11px;font-weight:400;border-radius:999px;padding:1px 8px;color:var(--dsw-alias-brand-text,#9db4ff);background:color-mix(in srgb,var(--dsw-alias-brand-primary,#7a86ff) 18%,transparent)}.skc-tag-new{color:#f0b04a;background:color-mix(in srgb,#f0b04a 18%,transparent)}.skc-desc{font-size:12.5px;margin-top:3px;color:var(--dsw-alias-label-secondary,inherit);opacity:.92;line-height:1.55}.skc-ex{font-size:11.5px;margin-top:4px;color:var(--dsw-alias-brand-text,#aab4ff);opacity:.9;line-height:1.6}.skc-src{font-size:11px;margin-top:4px;color:var(--dsw-alias-label-tertiary,inherit);opacity:.75}.skc-empty{padding:28px 16px;text-align:center;opacity:.75;font-size:13px}.skc-foot{flex:none;padding:8px 16px;font-size:11.5px;color:var(--dsw-alias-label-tertiary,inherit);border-top:1px solid var(--dsw-alias-border-l1,rgba(255,255,255,.12))}";
+		// 用户自定义收录（localStorage 持久化，即时生效、重启不丢）
+		var CUSTOM_KEY = "dsh-skill-cheatsheet.customDict.v1";
+		function loadCustom() {
+			try {
+				var raw = window.localStorage.getItem(CUSTOM_KEY);
+				var obj = raw ? JSON.parse(raw) : {};
+				return (obj && typeof obj === "object") ? obj : {};
+			} catch (e) { return {}; }
+		}
+		function saveCustom(map) {
+			try { window.localStorage.setItem(CUSTOM_KEY, JSON.stringify(map)); } catch (e) {}
+		}
+		var customDict = loadCustom();
+		function lookupMeta(name) {
+			if (customDict[name]) return customDict[name];
+			return DICT[name];
+		}
+
+		var css = ".skc-trigger{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;padding:0;border:none;border-radius:6px;background:transparent;font-size:15px;line-height:1;cursor:pointer;color:var(--dsw-alias-label-secondary,#4b5563)}.skc-trigger:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(128,128,128,.16));color:var(--dsw-alias-label-primary,#111827)}.skc-layer{position:fixed;inset:0;z-index:0;background:transparent}.skc-panel{position:fixed;left:50%;bottom:148px;transform:translateX(-50%);z-index:1;width:min(640px,92vw);max-height:60vh;overflow:hidden;border-radius:14px;display:flex;flex-direction:column;background:var(--dsw-alias-bg-overlay,#20242c);background:color-mix(in srgb,var(--dsw-alias-bg-overlay,#20242c) 92%,transparent);backdrop-filter:blur(22px) saturate(1.25);border:1px solid var(--dsw-alias-border-l1,rgba(255,255,255,.14));box-shadow:var(--dsw-shadow-lv3,0 18px 60px rgba(0,0,0,.35));color:var(--dsw-alias-label-primary,#eceef1)}.skc-head{flex:none;display:flex;align-items:center;gap:8px;padding:12px 16px;font-weight:600;font-size:14px;border-bottom:1px solid var(--dsw-alias-border-l1,rgba(255,255,255,.12))}.skc-head-icon{display:inline-flex;color:var(--dsw-alias-label-secondary,#4b5563)}.skc-count{margin-left:auto;margin-right:8px;font-size:12px;font-weight:500;color:var(--dsw-alias-label-tertiary,inherit);opacity:.85}.skc-close{border:none;background:transparent;color:inherit;opacity:.7;font-size:15px;cursor:pointer;padding:2px 8px;border-radius:6px}.skc-close:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(128,128,128,.18))}.skc-body{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:6px 0}.skc-group{padding:10px 16px 4px;font-size:12px;color:var(--dsw-alias-label-secondary,inherit);opacity:.8}.skc-item{display:flex;gap:10px;padding:9px 12px;align-items:flex-start;border-radius:8px}.skc-item:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(128,128,128,.14))}.skc-icon{flex:none;width:26px;height:26px;border-radius:8px;background:color-mix(in srgb,var(--dsw-alias-brand-primary,#7a86ff) 20%,transparent);color:var(--dsw-alias-brand-text,#aab4ff);display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}.skc-main{flex:1;min-width:0}.skc-name{font-weight:600;font-size:13.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.skc-tag{font-size:11px;font-weight:400;border-radius:999px;padding:1px 8px;color:var(--dsw-alias-brand-text,#9db4ff);background:color-mix(in srgb,var(--dsw-alias-brand-primary,#7a86ff) 18%,transparent)}.skc-tag-new{color:#f0b04a;background:color-mix(in srgb,#f0b04a 18%,transparent)}.skc-desc{font-size:12.5px;margin-top:3px;color:var(--dsw-alias-label-secondary,inherit);opacity:.92;line-height:1.55}.skc-ex{font-size:11.5px;margin-top:4px;color:var(--dsw-alias-brand-text,#aab4ff);opacity:.9;line-height:1.6}.skc-src{font-size:11px;margin-top:4px;color:var(--dsw-alias-label-tertiary,inherit);opacity:.75}.skc-empty{padding:28px 16px;text-align:center;opacity:.75;font-size:13px}.skc-foot{flex:none;padding:8px 16px;font-size:11.5px;color:var(--dsw-alias-label-tertiary,inherit);border-top:1px solid var(--dsw-alias-border-l1,rgba(255,255,255,.12))}.skc-retry{display:block;margin:2px auto 12px;border:1px solid var(--dsw-alias-border-l1,rgba(255,255,255,.18));background:transparent;color:var(--dsw-alias-label-primary,inherit);border-radius:999px;padding:4px 14px;font-size:12px;cursor:pointer}.skc-retry:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(128,128,128,.16))}.skc-add{border:1px solid var(--dsw-alias-border-l1,rgba(255,255,255,.16));background:transparent;color:var(--dsw-alias-label-primary,inherit);border-radius:999px;padding:1px 10px;font-size:11px;cursor:pointer;flex:none}.skc-add:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(128,128,128,.16))}.skc-form{display:flex;flex-direction:column;gap:6px;padding:8px 12px;border:1px solid var(--dsw-alias-border-l1,rgba(255,255,255,.14));border-radius:8px;background:color-mix(in srgb,var(--dsw-alias-bg-layer-2,transparent) 60%,transparent);margin:2px 12px 8px}.skc-field{display:flex;flex-direction:column;gap:3px}.skc-label{font-size:11px;color:var(--dsw-alias-label-secondary,inherit);opacity:.8}.skc-input{border:1px solid var(--dsw-alias-border-l1,rgba(255,255,255,.16));background:color-mix(in srgb,var(--dsw-alias-bg-base,#fff) 8%,transparent);color:var(--dsw-alias-label-primary,inherit);border-radius:6px;padding:4px 8px;font-size:12px;width:100%}.skc-form-actions{display:flex;gap:8px;justify-content:flex-end}.skc-save{border:none;border-radius:6px;background:var(--dsw-alias-state-success-primary,#3fbf77);color:#fff;padding:4px 12px;font-size:12px;cursor:pointer}.skc-cancel{border:1px solid var(--dsw-alias-border-l1,rgba(255,255,255,.18));background:transparent;color:var(--dsw-alias-label-primary,inherit);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer}";
 		if (typeof document !== "undefined" && document.querySelector("style[data-plugin-css=\"dsh-skill-cheatsheet/main\"]") === null) {
 			var styleTag = document.createElement("style");
 			styleTag.dataset.plugin = "dsh-skill-cheatsheet";
@@ -45,15 +63,15 @@ window.__ModuleLoader__.load({
 			close: function () { if (store.open) { store.open = false; store.emit(); } }
 		};
 
-		function useStoreOpen() {
-			var pair = react.useState(store.open);
-			react.useEffect(function () { return store.subscribe(function () { pair[1](store.open); }); }, []);
+		function useStoreVersion() {
+			var pair = react.useState(0);
+			react.useEffect(function () { return store.subscribe(function () { pair[1](function (n) { return n + 1; }); }); }, []);
 			return pair[0];
 		}
 
-		function loadSkills(ctx, sessionId) {
+		function loadSkills(ctx, sessionId, force) {
 			if (!sessionId || store.loading) return;
-			if (store.loadedSession === sessionId && store.skills.length > 0) return;
+			if (!force && store.loadedSession === sessionId && store.skills.length > 0) return;
 			store.loading = true;
 			store.loadedSession = sessionId;
 			store.emit();
@@ -70,16 +88,7 @@ window.__ModuleLoader__.load({
 				var value = (res && res.result && res.result.value) ? res.result.value : {};
 				var list = Array.isArray(value.skills) ? value.skills : [];
 				store.skills = list.map(function (s) {
-					var name = String(s.name || "");
-					var meta = DICT[name];
-					return {
-						name: name,
-						title: meta ? meta.title : name,
-						purpose: meta ? meta.purpose : (s.description || "（暂无中文说明，可让代理补充收录）"),
-						examples: meta ? meta.examples : [],
-						source: meta ? meta.source : "未收录（新安装）",
-						isNew: !meta
-					};
+					return { name: String(s.name || ""), desc: (s.description || "") };
 				});
 				store.note = store.skills.length === 0 ? "当前会话没有可用技能" : "";
 				store.emit();
@@ -108,62 +117,138 @@ window.__ModuleLoader__.load({
 		}
 
 		function Trigger(props) {
-			var open = useStoreOpen();
+			useStoreVersion();
 			if (props && props.sessionId) loadSkills(props.ctx, props.sessionId);
 			return react.createElement("button", {
 				className: "skc-trigger",
-				title: open ? "收起技能速查" : "技能速查：点开看当前有哪些技能及其用途",
+				title: store.open ? "收起技能速查" : "技能速查：点开看当前有哪些技能及其用途",
 				"aria-label": "技能速查",
 				onClick: function () { store.toggle(); }
 			}, react.createElement(WrenchIcon, { size: 15 }));
 		}
 
+		// 单个待收录技能的收录表单（默认填入英文名与官方描述，用户可改中文后保存）
+		function CaptureForm(props) {
+			var skill = props.skill;
+			var pairT = react.useState(skill.name);
+			var pairP = react.useState(skill.desc || "");
+			var pairS = react.useState("本机收录");
+			return react.createElement("div", { className: "skc-form" },
+				react.createElement("div", { className: "skc-field" },
+					react.createElement("span", { className: "skc-label" }, "中文名 / 标题"),
+					react.createElement("input", { className: "skc-input", value: pairT[0], onChange: function (e) { pairT[1](e.target.value); } })
+				),
+				react.createElement("div", { className: "skc-field" },
+					react.createElement("span", { className: "skc-label" }, "用途说明（一句话）"),
+					react.createElement("input", { className: "skc-input", value: pairP[0], onChange: function (e) { pairP[1](e.target.value); } })
+				),
+				react.createElement("div", { className: "skc-field" },
+					react.createElement("span", { className: "skc-label" }, "来源"),
+					react.createElement("input", { className: "skc-input", value: pairS[0], onChange: function (e) { pairS[1](e.target.value); } })
+				),
+				react.createElement("div", { className: "skc-form-actions" },
+					react.createElement("button", { className: "skc-cancel", onClick: props.onCancel }, "取消"),
+					react.createElement("button", { className: "skc-save", onClick: function () {
+						var title = pairT[0].trim() || skill.name;
+						var purpose = pairP[0].trim();
+						if (!purpose) return;
+						customDict[skill.name] = { title: title, purpose: purpose, source: pairS[0].trim() || "本机收录", examples: [] };
+						saveCustom(customDict);
+						store.emit();
+					} }, "收录")
+				)
+			);
+		}
+
+		function NewSkillRow(props) {
+			var s = props.s;
+			var pair = react.useState(false);
+			return react.createElement(react.Fragment, null,
+				react.createElement("div", { className: "skc-item" },
+					react.createElement("div", { className: "skc-icon" }, s.name.slice(0, 1).toUpperCase()),
+					react.createElement("div", { className: "skc-main" },
+						react.createElement("div", { className: "skc-name" },
+							s.name,
+							react.createElement("span", { className: "skc-tag skc-tag-new" }, "新·待收录")
+						),
+						react.createElement("div", { className: "skc-desc" }, s.desc || "（暂无说明，可点「收录」填写中文用途）")
+					),
+					react.createElement("button", { className: "skc-add", onClick: function () { pair[1](true); } }, "＋ 收录")
+				),
+				pair[0]
+					? react.createElement(CaptureForm, { skill: s, onCancel: function () { pair[1](false); } })
+					: null
+			);
+		}
+
 		function SkillList() {
+			useStoreVersion();
 			var groups = [];
 			if (store.loading) {
 				groups.push(react.createElement("div", { className: "skc-empty", key: "l" }, "加载中…"));
 			} else if (store.skills.length === 0) {
+				var failed = store.note && (store.note.indexOf("失败") >= 0 || store.note === "connection.skills api 不可用");
 				groups.push(react.createElement("div", { className: "skc-empty", key: "e" }, store.note || "暂无技能数据"));
+				if (failed) {
+					groups.push(react.createElement("button", { className: "skc-retry", key: "r", onClick: function () {
+						store.note = "";
+						var sid = store.loadedSession;
+						store.emit();
+						var conn = store.ctx ? store.ctx.get("connection") : null;
+						store.ctx && sid && loadSkills(store.ctx, sid, true);
+					} }, "↻ 重试"));
+				}
 			} else {
-				var news = store.skills.filter(function (s) { return s.isNew; });
-				var knowns = store.skills.filter(function (s) { return !s.isNew; });
+				var news = [];
+				var knowns = [];
+				store.skills.forEach(function (s) {
+					if (lookupMeta(s.name)) knowns.push(s); else news.push(s);
+				});
 				if (news.length) {
-					groups.push(react.createElement("div", { className: "skc-group", key: "g0" }, "🆕 新技能·待收录"));
-					news.forEach(function (s) { groups.push(row(s, true)); });
+					groups.push(react.createElement("div", { className: "skc-group", key: "g0" }, "🆕 新技能·待收录（点击 ＋ 收录并填写中文）"));
+					news.forEach(function (s) {
+						groups.push(react.createElement(NewSkillRow, { s: s, key: s.name }));
+					});
 				}
 				if (knowns.length) {
 					groups.push(react.createElement("div", { className: "skc-group", key: "g1" }, "本会话可用"));
-					knowns.forEach(function (s) { groups.push(row(s, false)); });
+					knowns.forEach(function (s) {
+						var meta = lookupMeta(s.name);
+						groups.push(react.createElement("div", { className: "skc-item", key: s.name },
+							react.createElement("div", { className: "skc-icon" }, s.name.slice(0, 1).toUpperCase()),
+							react.createElement("div", { className: "skc-main" },
+								react.createElement("div", { className: "skc-name" },
+									meta.title,
+									react.createElement("span", { className: "skc-tag" }, "本会话可用")
+								),
+								react.createElement("div", { className: "skc-desc" }, meta.purpose),
+								meta.examples && meta.examples.length
+									? react.createElement("div", { className: "skc-ex" }, meta.examples.map(function (ex, i) { return react.createElement("div", { key: i }, "💬 " + ex); }))
+									: null,
+								react.createElement("div", { className: "skc-src" }, "来源：" + meta.source)
+							)
+						));
+					});
 				}
 			}
 			return react.createElement(react.Fragment, null, groups);
 		}
 
-		function row(s, isNew) {
-			return react.createElement("div", { className: "skc-item", key: s.name },
-				react.createElement("div", { className: "skc-icon" }, s.name.slice(0, 1).toUpperCase()),
-				react.createElement("div", { className: "skc-main" },
-					react.createElement("div", { className: "skc-name" },
-						s.title,
-						react.createElement("span", { className: "skc-tag" + (isNew ? " skc-tag-new" : "") }, isNew ? "新·待收录" : "本会话可用")
-					),
-					react.createElement("div", { className: "skc-desc" }, s.purpose),
-					s.examples && s.examples.length ? react.createElement("div", { className: "skc-ex" }, s.examples.map(function (ex, i) { return react.createElement("div", { key: i }, "💬 " + ex); })) : null,
-					react.createElement("div", { className: "skc-src" }, "来源：" + s.source)
-				)
-			);
-		}
-
 		function Panel(props) {
-			var open = useStoreOpen();
-			if (props && props.sessionId) loadSkills(props.ctx, props.sessionId);
-			if (!open) return null;
+			useStoreVersion();
+			if (props && props.sessionId) { store.ctx = props.ctx; loadSkills(props.ctx, props.sessionId); }
+			if (!store.open) return null;
+			var newCount = store.skills.filter(function (s) { return !lookupMeta(s.name); }).length;
 			return react.createElement(react.Fragment, null,
 				react.createElement("div", { className: "skc-layer", onClick: function () { store.close(); } }),
 				react.createElement("div", { className: "skc-panel", onClick: function (e) { e.stopPropagation(); } },
 					react.createElement("div", { className: "skc-head" },
 						react.createElement("span", { className: "skc-head-icon" }, react.createElement(WrenchIcon, { size: 16 })),
 						"技能速查",
+						store.skills.length > 0
+							? react.createElement("span", { className: "skc-count" },
+								(newCount > 0 ? "🆕 " + newCount + " 待收录 · " : "") + store.skills.length + " 个技能")
+							: null,
 						react.createElement("button", { className: "skc-close", onClick: function () { store.close(); }, "aria-label": "关闭" }, "✕")
 					),
 					react.createElement("div", { className: "skc-body" }, react.createElement(SkillList, null)),

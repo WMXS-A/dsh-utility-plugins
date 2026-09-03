@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.0 (2026-09-03)
+
+- One-click cataloguing of newly installed skills: uncatalogued skills appear at the top with a "＋ 收录" button; the inline form saves a local Chinese entry (title / purpose / source) to browser storage, taking effect immediately and surviving restarts.
+- Skill detection is now part of the panel itself (no separate health-check popup).
+
 ## 1.0.0 (2026-09-02)
 
 - Initial public release as part of the `dsh-utility-plugins` monorepo.
