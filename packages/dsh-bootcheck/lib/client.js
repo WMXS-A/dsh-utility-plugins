@@ -68,7 +68,8 @@ window.__ModuleLoader__.load({
 			if (state.open) { state.open = false; emit(); }
 		}
 
-		function BootCard() {
+		// 报告卡片：注册到 shell.overlay（root 全帧层，无 transform，fixed 定位可靠、可正常关闭）
+		function ReportCard() {
 			useSnapshot();
 			if (!state.open) return null;
 			return react.createElement(react.Fragment, null,
@@ -94,22 +95,28 @@ window.__ModuleLoader__.load({
 			);
 		}
 
-		function BootProbe(props) {
-			var ctx = BootProbe.ctx;
+		// 探针：注册到输入框工具行（能拿到 sessionId），无可见 UI，只负责触发体检
+		function Probe(props) {
+			var ctx = Probe.ctx;
 			var sessionId = props && props.sessionId;
 			react.useEffect(function () {
 				if (ctx && sessionId) runCheck(ctx, sessionId);
 			}, [sessionId]);
-			return react.createElement(BootCard, null);
+			return null;
 		}
 
 		function apply(ctx) {
-			BootProbe.ctx = ctx;
+			Probe.ctx = ctx;
 			var slots = ctx.get("slots");
 			if (!slots) return;
-			slots.inject("conversation.input.overlay", function () {
-				return slots.register({ name: "conversation.input.overlay", id: "bootcheck-probe" }, function (props) {
-					return react.createElement(BootProbe, props);
+			slots.inject("conversation.input.left", function () {
+				return slots.register({ name: "conversation.input.left", id: "bootcheck-probe" }, function (props) {
+					return react.createElement(Probe, props);
+				});
+			});
+			slots.inject("shell.overlay", function () {
+				return slots.register({ name: "shell.overlay", id: "bootcheck-report" }, function () {
+					return react.createElement(ReportCard, null);
 				});
 			});
 		}
