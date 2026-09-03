@@ -23,7 +23,7 @@ window.__ModuleLoader__.load({
 			"vision-skills": { title: "vision-skills · 视觉处理", purpose: "截图还原 UI、图片问答、长截图 OCR、元素定位、裁剪、取色、SVG 描摹。", source: "视觉插件提供", examples: ["把这张截图还原成网页", "这个图片里写了什么文字"] }
 		};
 
-		var css = ".skc-trigger{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;padding:0;border:none;border-radius:6px;background:transparent;font-size:15px;line-height:1;cursor:pointer}.skc-trigger:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(128,128,128,.16))}.skc-layer{position:fixed;inset:0;z-index:0;background:transparent}.skc-panel{position:fixed;left:50%;bottom:148px;transform:translateX(-50%);z-index:1;width:min(640px,92vw);max-height:56vh;overflow:hidden;border-radius:14px;display:flex;flex-direction:column;background:var(--dsw-alias-bg-overlay,#20242c);background:color-mix(in srgb,var(--dsw-alias-bg-overlay,#20242c) 92%,transparent);backdrop-filter:blur(22px) saturate(1.25);border:1px solid var(--dsw-alias-border-l1,rgba(255,255,255,.14));box-shadow:var(--dsw-shadow-lv3,0 18px 60px rgba(0,0,0,.35));color:var(--dsw-alias-label-primary,#eceef1)}.skc-head{flex:none;display:flex;align-items:center;gap:8px;padding:12px 16px;font-weight:600;font-size:14px;border-bottom:1px solid var(--dsw-alias-border-l1,rgba(255,255,255,.12))}.skc-count{margin-left:auto;margin-right:8px;font-size:12px;font-weight:500;color:var(--dsw-alias-label-tertiary,inherit);opacity:.85}.skc-retry{display:block;margin:2px auto 12px;border:1px solid var(--dsw-alias-border-l1,rgba(255,255,255,.18));background:transparent;color:var(--dsw-alias-label-primary,inherit);border-radius:999px;padding:4px 14px;font-size:12px;cursor:pointer}.skc-retry:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(128,128,128,.16))}.skc-close{border:none;background:transparent;color:inherit;opacity:.7;font-size:15px;cursor:pointer;padding:2px 8px;border-radius:6px}.skc-close:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(128,128,128,.18))}.skc-body{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:6px 0}.skc-group{padding:10px 16px 4px;font-size:12px;color:var(--dsw-alias-label-secondary,inherit);opacity:.8}.skc-item{display:flex;gap:10px;padding:9px 12px;align-items:flex-start;border-radius:8px}.skc-item:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(128,128,128,.14))}.skc-icon{flex:none;width:26px;height:26px;border-radius:8px;background:color-mix(in srgb,var(--dsw-alias-brand-primary,#7a86ff) 20%,transparent);color:var(--dsw-alias-brand-text,#aab4ff);display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}.skc-main{flex:1;min-width:0}.skc-name{font-weight:600;font-size:13.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.skc-tag{font-size:11px;font-weight:400;border-radius:999px;padding:1px 8px;color:var(--dsw-alias-brand-text,#9db4ff);background:color-mix(in srgb,var(--dsw-alias-brand-primary,#7a86ff) 18%,transparent)}.skc-tag-new{color:#f0b04a;background:color-mix(in srgb,#f0b04a 18%,transparent)}.skc-desc{font-size:12.5px;margin-top:3px;color:var(--dsw-alias-label-secondary,inherit);opacity:.92;line-height:1.55}.skc-ex{font-size:11.5px;margin-top:4px;color:var(--dsw-alias-brand-text,#aab4ff);opacity:.9;line-height:1.6}.skc-src{font-size:11px;margin-top:4px;color:var(--dsw-alias-label-tertiary,inherit);opacity:.75}.skc-empty{padding:28px 16px;text-align:center;opacity:.75;font-size:13px}.skc-foot{flex:none;padding:8px 16px;font-size:11.5px;color:var(--dsw-alias-label-tertiary,inherit);border-top:1px solid var(--dsw-alias-border-l1,rgba(255,255,255,.12))}";
+		var css = ".skc-trigger{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;padding:0;border:none;border-radius:6px;background:transparent;font-size:15px;line-height:1;cursor:pointer;color:var(--dsw-alias-label-secondary,#4b5563)}.skc-trigger:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(128,128,128,.16));color:var(--dsw-alias-label-primary,#111827)}.skc-layer{position:fixed;inset:0;z-index:0;background:transparent}.skc-panel{position:fixed;left:50%;bottom:148px;transform:translateX(-50%);z-index:1;width:min(640px,92vw);max-height:56vh;overflow:hidden;border-radius:14px;display:flex;flex-direction:column;background:var(--dsw-alias-bg-overlay,#20242c);background:color-mix(in srgb,var(--dsw-alias-bg-overlay,#20242c) 92%,transparent);backdrop-filter:blur(22px) saturate(1.25);border:1px solid var(--dsw-alias-border-l1,rgba(255,255,255,.14));box-shadow:var(--dsw-shadow-lv3,0 18px 60px rgba(0,0,0,.35));color:var(--dsw-alias-label-primary,#eceef1)}.skc-head{flex:none;display:flex;align-items:center;gap:8px;padding:12px 16px;font-weight:600;font-size:14px;border-bottom:1px solid var(--dsw-alias-border-l1,rgba(255,255,255,.12))}.skc-head-icon{display:inline-flex;color:var(--dsw-alias-label-secondary,#4b5563)}.skc-close{margin-left:auto;border:none;background:transparent;color:inherit;opacity:.7;font-size:15px;cursor:pointer;padding:2px 8px;border-radius:6px}.skc-close:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(128,128,128,.18))}.skc-body{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:6px 0}.skc-group{padding:10px 16px 4px;font-size:12px;color:var(--dsw-alias-label-secondary,inherit);opacity:.8}.skc-item{display:flex;gap:10px;padding:9px 12px;align-items:flex-start;border-radius:8px}.skc-item:hover{background:var(--dsw-alias-interactive-bg-hover,rgba(128,128,128,.14))}.skc-icon{flex:none;width:26px;height:26px;border-radius:8px;background:color-mix(in srgb,var(--dsw-alias-brand-primary,#7a86ff) 20%,transparent);color:var(--dsw-alias-brand-text,#aab4ff);display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}.skc-main{flex:1;min-width:0}.skc-name{font-weight:600;font-size:13.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.skc-tag{font-size:11px;font-weight:400;border-radius:999px;padding:1px 8px;color:var(--dsw-alias-brand-text,#9db4ff);background:color-mix(in srgb,var(--dsw-alias-brand-primary,#7a86ff) 18%,transparent)}.skc-tag-new{color:#f0b04a;background:color-mix(in srgb,#f0b04a 18%,transparent)}.skc-desc{font-size:12.5px;margin-top:3px;color:var(--dsw-alias-label-secondary,inherit);opacity:.92;line-height:1.55}.skc-ex{font-size:11.5px;margin-top:4px;color:var(--dsw-alias-brand-text,#aab4ff);opacity:.9;line-height:1.6}.skc-src{font-size:11px;margin-top:4px;color:var(--dsw-alias-label-tertiary,inherit);opacity:.75}.skc-empty{padding:28px 16px;text-align:center;opacity:.75;font-size:13px}.skc-foot{flex:none;padding:8px 16px;font-size:11.5px;color:var(--dsw-alias-label-tertiary,inherit);border-top:1px solid var(--dsw-alias-border-l1,rgba(255,255,255,.12))}";
 		if (typeof document !== "undefined" && document.querySelector("style[data-plugin-css=\"dsh-skill-cheatsheet/main\"]") === null) {
 			var styleTag = document.createElement("style");
 			styleTag.dataset.plugin = "dsh-skill-cheatsheet";
@@ -51,9 +51,9 @@ window.__ModuleLoader__.load({
 			return pair[0];
 		}
 
-		function loadSkills(ctx, sessionId, force) {
+		function loadSkills(ctx, sessionId) {
 			if (!sessionId || store.loading) return;
-			if (!force && store.loadedSession === sessionId && store.skills.length > 0) return;
+			if (store.loadedSession === sessionId && store.skills.length > 0) return;
 			store.loading = true;
 			store.loadedSession = sessionId;
 			store.emit();
@@ -90,6 +90,23 @@ window.__ModuleLoader__.load({
 			});
 		}
 
+		// 灰黑色扳手图标（SVG，颜色跟随文字变量，可主题适配）
+		function WrenchIcon(props) {
+			var size = (props && props.size) || 16;
+			return react.createElement("svg", {
+				width: size,
+				height: size,
+				viewBox: "0 0 24 24",
+				fill: "none",
+				"aria-hidden": "true"
+			},
+				react.createElement("path", {
+					fill: "currentColor",
+					d: "M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.5 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"
+				})
+			);
+		}
+
 		function Trigger(props) {
 			var open = useStoreOpen();
 			if (props && props.sessionId) loadSkills(props.ctx, props.sessionId);
@@ -98,20 +115,15 @@ window.__ModuleLoader__.load({
 				title: open ? "收起技能速查" : "技能速查：点开看当前有哪些技能及其用途",
 				"aria-label": "技能速查",
 				onClick: function () { store.toggle(); }
-			}, "🧩");
+			}, react.createElement(WrenchIcon, { size: 15 }));
 		}
 
-		function SkillList(props) {
-			var onRetry = props && props.onRetry;
+		function SkillList() {
 			var groups = [];
 			if (store.loading) {
 				groups.push(react.createElement("div", { className: "skc-empty", key: "l" }, "加载中…"));
 			} else if (store.skills.length === 0) {
-				var failed = store.note && store.note.indexOf("失败") >= 0 || store.note === "connection.skills api 不可用";
 				groups.push(react.createElement("div", { className: "skc-empty", key: "e" }, store.note || "暂无技能数据"));
-				if (failed && onRetry) {
-					groups.push(react.createElement("button", { className: "skc-retry", key: "r", onClick: onRetry }, "↻ 重试"));
-				}
 			} else {
 				var news = store.skills.filter(function (s) { return s.isNew; });
 				var knowns = store.skills.filter(function (s) { return !s.isNew; });
@@ -150,21 +162,11 @@ window.__ModuleLoader__.load({
 				react.createElement("div", { className: "skc-layer", onClick: function () { store.close(); } }),
 				react.createElement("div", { className: "skc-panel", onClick: function (e) { e.stopPropagation(); } },
 					react.createElement("div", { className: "skc-head" },
-						"🧩 技能速查",
-						store.skills.length > 0
-							? react.createElement("span", { className: "skc-count" },
-								(store.skills.filter(function (s) { return s.isNew; }).length > 0
-									? "🆕 " + store.skills.filter(function (s) { return s.isNew; }).length + " 待收录 · "
-									: "") + store.skills.length + " 个技能")
-							: null,
+						react.createElement("span", { className: "skc-head-icon" }, react.createElement(WrenchIcon, { size: 16 })),
+						"技能速查",
 						react.createElement("button", { className: "skc-close", onClick: function () { store.close(); }, "aria-label": "关闭" }, "✕")
 					),
-					react.createElement("div", { className: "skc-body" },
-						react.createElement(SkillList, { onRetry: function () {
-							store.note = "";
-							if (props && props.sessionId) loadSkills(props.ctx, props.sessionId, true);
-						} })
-					),
+					react.createElement("div", { className: "skc-body" }, react.createElement(SkillList, null)),
 					store.note ? react.createElement("div", { className: "skc-foot" }, store.note) : null
 				)
 			);
